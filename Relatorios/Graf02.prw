@@ -80,7 +80,14 @@ User Function Graf02()
 
         oChart:Build()
 
-    ACTIVATE MSDIALOG oDlg CENTERED Init ( oChart:SaveToPng( 0 , 0 , nLargura , nAltura , cDiretorio + "graf02.png" ) , oDlg:End() )
+    ACTIVATE MSDIALOG oDlg CENTERED ON INIT ( oChart:SaveToPng( 0 , 0 , nLargura , nAltura , cDiretorio + "graf02.png" ) , oDlg:End() )
+
+    oPrintPvt:SayBitmap( nLinAtu , nColIni , cDiretorio + "graf02.png" , nLargura/2 , nAltura/1.6 )
+    nLinAtu += nAltura + 5  
+    oPrintPvt:EndPage()
+    oPrintPvt:Preview()
+
+    RestArea(aArea)
 
 Return 
 
