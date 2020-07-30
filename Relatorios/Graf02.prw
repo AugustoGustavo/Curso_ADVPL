@@ -34,7 +34,7 @@ User Function Graf02()
     Private nLinAtu     := 0
     Private nLinFin     := 820
     Private nColIni     := 010
-    Private nColFin     := 550
+    Private nColFin     := 500
     Private nColMeio    := ( nColFin  - nColIni) / 2
 
     Processa( {  || MontaQuery( cAlias ) } , , "Processando..." ) 
@@ -84,7 +84,9 @@ User Function Graf02()
 
     oPrintPvt:SayBitmap( nLinAtu , nColIni , cDiretorio + "graf02.png" , nLargura/2 , nAltura/1.6 )
     nLinAtu += nAltura + 5  
-    oPrintPvt:EndPage()
+
+    RodaPe()
+
     oPrintPvt:Preview()
 
     RestArea(aArea)
@@ -110,10 +112,41 @@ Static Function MontaQuery( cAlias )
         FROM %Table:SF2% SF2 INNER JOIN %Table:SA1% SA1
             ON F2_CLIENTE = A1_COD AND F2_LOJA = A1_LOJA 
         WHERE 
-            F2_EMISSAO >= '20200101' AND F2_EMISSAO <= '20200105' AND 
+            F2_EMISSAO >= '20200102' AND F2_EMISSAO <= '20200102' AND 
             F2_CLIENTE <> '000001' AND
             SF2.%NotDel% AND SA1.%NotDel%
         GROUP BY F2_CLIENTE, A1_NOME
     ENDSQL
 
+Return
+
+/*/{Protheus.doc} Rodape    
+    (long_description)
+    @type  Static Function
+    @author Augusto
+    @since 29/07/2020
+    @version version
+    @param , , 
+    @return , , 
+    @example
+    (examples)
+    @see (links_or_references)
+    /*/
+Static Function RodaPe()
+    Local nLinha := nLinFin
+    Local cTitulo := ""
+
+    oPrintPvt:Line( nLinha , nColIni , nLinha , nColFin , RGB(0,0,200) )
+    nLinha += 4
+
+    cTitulo := "Relatório Clientes x Vendas - " + dToC(dDataBase) + " - " + cHoraEx + " - " + cUserName 
+
+    oPrintPvt:SayAlign( nLinha , nColIni , cTitulo , oFontRod , 250 , 07 , , 0 , )
+
+    cTitulo := "Pagina " + cValToChar(nPagAtu)
+    oPrintPvt:SayAlign( nLinha , nColFin , cTitulo , oFontRod , 040 , 07 , , 1 , )
+
+    oPrintPvt:EndPage()
+    nPagAtu++
+    
 Return
