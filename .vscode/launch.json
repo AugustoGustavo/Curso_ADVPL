@@ -1,0 +1,28 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "totvs_language_debug",
+			"request": "launch",
+			"name": "Totvs Language Debug",
+			"program": "${command:AskForProgramName}",
+			"cwb": "${workspaceFolder}",
+			"smartclientBin": "C:\\Users\\helpd\\Documents\\Logos\\Help Desk\\Clientes\\Contrato\\Vicentao\\totvs12.1.25\\smartclient_desenv_x32\\smartclient.exe",
+			"isMultiSession": true,
+			"enableTableSync": true
+		}
+	],
+	"lastPrograms": [
+		{
+			"args": [],
+			"label": "u_reltxt",
+			"description": ""
+		},
+		{
+			"args": [],
+			"label": "reltxt",
+			"description": ""
+		}
+	],
+	"lastProgramExecuted": "reltxt"
+}
